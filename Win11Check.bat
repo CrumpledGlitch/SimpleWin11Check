@@ -3,17 +3,21 @@
 title Windows 11 Compatibility Check [MR] >con
 
 
-echo __/\\\______________/\\\__________________________/\\\______/\\\__________________/\\\\\\\\\__/\\\_______________________________________________________________________________________/\\\\____________/\\\\____/\\\\\\\\\_____        
-echo _\/\\\_____________\/\\\______________________/\\\\\\\__/\\\\\\\_______________/\\\////////__\/\\\_______________________________________/\\\___________________________________________\/\\\\\\________/\\\\\\__/\\\///////\\\___       
-echo  _\/\\\_____________\/\\\__/\\\_______________\/////\\\_\/////\\\_____________/\\\/___________\/\\\______________________________________\/\\\___________________________________________\/\\\//\\\____/\\\//\\\_\/\\\_____\/\\\___      
-echo   _\//\\\____/\\\____/\\\__\///___/\\/\\\\\\_______\/\\\_____\/\\\____________/\\\_____________\/\\\_____________/\\\\\\\\______/\\\\\\\\_\/\\\\\\\\_______________/\\\\\\\\\\\___________\/\\\\///\\\/\\\/_\/\\\_\/\\\\\\\\\\\/____     
-echo    __\//\\\__/\\\\\__/\\\____/\\\_\/\\\////\\\______\/\\\_____\/\\\___________\/\\\_____________\/\\\\\\\\\\____/\\\/////\\\___/\\\//////__\/\\\////\\\____________\///////////____________\/\\\__\///\\\/___\/\\\_\/\\\//////\\\____    
-echo     ___\//\\\/\\\/\\\/\\\____\/\\\_\/\\\__\//\\\_____\/\\\_____\/\\\___________\//\\\____________\/\\\/////\\\__/\\\\\\\\\\\___/\\\_________\/\\\\\\\\/_____________________________________\/\\\____\///_____\/\\\_\/\\\____\//\\\___   
-echo      ____\//\\\\\\//\\\\\_____\/\\\_\/\\\___\/\\\_____\/\\\_____\/\\\____________\///\\\__________\/\\\___\/\\\_\//\\///////___\//\\\________\/\\\///\\\_____________________________________\/\\\_____________\/\\\_\/\\\_____\//\\\__  
-echo       _____\//\\\__\//\\\______\/\\\_\/\\\___\/\\\_____\/\\\_____\/\\\______________\////\\\\\\\\\_\/\\\___\/\\\__\//\\\\\\\\\\__\///\\\\\\\\_\/\\\_\///\\\___________________________________\/\\\_____________\/\\\_\/\\\______\//\\\_ 
-echo        ______\///____\///_______\///__\///____\///______\///______\///__________________\/////////__\///____\///____\//////////_____\////////__\///____\///____________________________________\///______________\///__\///________\///__
+@REM echo __/\\\______________/\\\__________________________/\\\______/\\\__________________/\\\\\\\\\__/\\\_______________________________________________________________________________________/\\\\____________/\\\\____/\\\\\\\\\_____        
+@REM echo _\/\\\_____________\/\\\______________________/\\\\\\\__/\\\\\\\_______________/\\\////////__\/\\\_______________________________________/\\\___________________________________________\/\\\\\\________/\\\\\\__/\\\///////\\\___       
+@REM echo  _\/\\\_____________\/\\\__/\\\_______________\/////\\\_\/////\\\_____________/\\\/___________\/\\\______________________________________\/\\\___________________________________________\/\\\//\\\____/\\\//\\\_\/\\\_____\/\\\___      
+@REM echo   _\//\\\____/\\\____/\\\__\///___/\\/\\\\\\_______\/\\\_____\/\\\____________/\\\_____________\/\\\_____________/\\\\\\\\______/\\\\\\\\_\/\\\\\\\\_______________/\\\\\\\\\\\___________\/\\\\///\\\/\\\/_\/\\\_\/\\\\\\\\\\\/____     
+@REM echo    __\//\\\__/\\\\\__/\\\____/\\\_\/\\\////\\\______\/\\\_____\/\\\___________\/\\\_____________\/\\\\\\\\\\____/\\\/////\\\___/\\\//////__\/\\\////\\\____________\///////////____________\/\\\__\///\\\/___\/\\\_\/\\\//////\\\____    
+@REM echo     ___\//\\\/\\\/\\\/\\\____\/\\\_\/\\\__\//\\\_____\/\\\_____\/\\\___________\//\\\____________\/\\\/////\\\__/\\\\\\\\\\\___/\\\_________\/\\\\\\\\/_____________________________________\/\\\____\///_____\/\\\_\/\\\____\//\\\___   
+@REM echo      ____\//\\\\\\//\\\\\_____\/\\\_\/\\\___\/\\\_____\/\\\_____\/\\\____________\///\\\__________\/\\\___\/\\\_\//\\///////___\//\\\________\/\\\///\\\_____________________________________\/\\\_____________\/\\\_\/\\\_____\//\\\__  
+@REM echo       _____\//\\\__\//\\\______\/\\\_\/\\\___\/\\\_____\/\\\_____\/\\\______________\////\\\\\\\\\_\/\\\___\/\\\__\//\\\\\\\\\\__\///\\\\\\\\_\/\\\_\///\\\___________________________________\/\\\_____________\/\\\_\/\\\______\//\\\_ 
+@REM echo        ______\///____\///_______\///__\///____\///______\///______\///__________________\/////////__\///____\///____\//////////_____\////////__\///____\///____________________________________\///______________\///__\///________\///__
 
 
+echo Yb        dP 88 88b 88       .d   .d      dP""b8 88  88 888888  dP""b8 88  dP                  8b    d8 88""Yb 
+echo Yb  db  dP  88 88Yb88     .d88 .d88     dP   `" 88  88 88__   dP   `" 88odP      ________     88b  d88 88__dP 
+echo  YbdPYbdP   88 88 Y88       88   88     Yb      888888 88""   Yb      88"Yb      """"""""     88YbdP88 88"Yb  
+echo   YP  YP    88 88  Y8       88   88      YboodP 88  88 888888  YboodP 88  Yb                  88 YY 88 88  Yb 
 
 
 
@@ -31,11 +35,11 @@ goto check_Permissions
     
     net session >nul 2>&1
     if %errorLevel% == 0 (
-        echo Success: Administrative permissions confirmed.
+        echo [92mSuccess: Administrative permissions confirmed.[0m
         goto Core1
 
     ) else (
-        echo Failure: Current permissions inadequate, please run as admin or ask M for support.
+        echo [91mFailure: Current permissions inadequate, please run as admin or ask M for support.[0m
         pause >nul
         exit 1;
     )
@@ -44,7 +48,7 @@ goto check_Permissions
 :Core1
 
 echo. >con
-echo Checking CPU Compatibility... Please note this can take a few moments ...
+echo Checking CPU Compatibility... 
 powershell Get-WmiObject -Class Win32_Processor -ComputerName. ^| Select -ExpandProperty Name >%temp%\CPUC.log
 set /p "CPUn=" <%temp%\CPUC.log
 type %temp%\CPUC.log | findstr /c:"Intel" >nul 2>&1 && set "CPU=Intel"
@@ -53,6 +57,8 @@ type %temp%\CPUC.log | findstr /c:"Qualcomm" >nul 2>&1 && set "CPU=Qualcomm"
 
 
 echo Your PC has an %CPU% CPU [%CPUn%]. >con
+echo .
+echo [4mPlease note this next step can take a few moments ...[0m
 
 @REM Below is a list that decides if CPU is compatible with the installation
 
@@ -655,15 +661,17 @@ type %temp%\CPUC.log | findstr /c:"Xeon(R) Silver 4316 " >nul 2>&1 && set "CPUCo
 :cpufn
 if not "%CPUComp%"=="Compatible" ( set "cpucomp=Incompatible" )
 
+echo. >con
 :ttest
 if not "%CPUComp%"=="Compatible" ( echo [91mYour Processor is not listed as compatible at the time of this program creation[0m >con && set "cre=[103m?[106m ") else ( echo Your Processor is listed as compatible. >con && set "cre=[102mOK[106m")
 
 ::CPU Core Count
 echo ------
+echo. >con
 echo Counting Cores ...
 powershell Get-WmiObject -class Win32_processor ^| select -expandproperty NumberOfCores >%temp%\cpucn.log
 powershell Get-WmiObject -class Win32_processor ^| select -expandproperty NumberOfLogicalProcessors >%temp%\cpulp.log
-
+echo Your PC has %cpun% Cores.
 set /p "cpucn=" <%temp%\cpucn.log
 set /p "cpulp=" <%temp%\cpulp.log
 
@@ -671,9 +679,10 @@ if "%cpucn%" GEQ "002" ( echo [92mYour CPU core count is supported by Windows 1
 
 ::CPU Freq
 echo ------
+echo. >con
 echo Testing CPU Freq
 powershell Get-WmiObject -class Win32_processor ^| select -expandproperty MaxClockSpeed >%temp%\cpuf.log
-
+echo Your CPU freq is : %cpuf%
 set /p "cpuf=" <%temp%\cpuf.log
 
 if "%cpuf%" GEQ "1000" ( echo [92mYour CPU Frequency is supported by Windows 11.[0m >con && set "cfre=[102mOK[106m") else ( echo [91mYour CPU Frequency is not supported by Windows 11.[0m >con && set "cfre=[41;37mX[106;30m ")
@@ -694,5 +703,15 @@ if "%RamSp%"=="Compatible" ( set "RMSay=[92menough[0m")
 if "%RamSp%"=="Incompatible" ( set "RMSay=[91mnot enough[0m")
 
 echo Your RAM is %RMSay% to run Windows 11. >con
+
+::Boot
+echo ------
+echo. >con
+echo Checking Boot Mode... >con
+echo Your PC boot mode is %firmware_type%. >con
+if "%firmware_type%"=="UEFI" ( echo [92mYour PC boot mode is supported by Windows 11.[0m >con && set "bre=[102mOK[106m") else ( echo [91mYour PC boot mode is not supported by Windows 11. Consider switching to UEFI.[91m >con && set "bre=[41;37mX[106;30m ")
+
+
+
 
 echo IF ANY RED / FAILS SHOW ABOVE YOU CANNOT INSTALL
