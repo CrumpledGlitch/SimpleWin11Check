@@ -46,7 +46,8 @@ goto check_Permissions
     
 
 :Core1
-
+echo. >con
+echo ------
 echo. >con
 echo Checking CPU Compatibility... 
 powershell Get-WmiObject -Class Win32_Processor -ComputerName. ^| Select -ExpandProperty Name >%temp%\CPUC.log
@@ -666,6 +667,7 @@ echo. >con
 if not "%CPUComp%"=="Compatible" ( echo [91mYour Processor is not listed as compatible at the time of this program creation[0m >con && set "cre=[103m?[106m ") else ( echo Your Processor is listed as compatible. >con && set "cre=[102mOK[106m")
 
 ::CPU Core Count
+echo. >con
 echo ------
 echo. >con
 echo Counting Cores ...
@@ -678,6 +680,7 @@ set /p "cpulp=" <%temp%\cpulp.log
 if "%cpucn%" GEQ "002" ( echo [92mYour CPU core count is supported by Windows 11.[0m >con && set "crre=[102mOK[106m") else ( echo [91mYour CPU Core Count is not supported by Windows 11.[0m >con && set "crre=[41;37mX[106;30m ")
 
 ::CPU Freq
+echo. >con
 echo ------
 echo. >con
 echo Testing CPU Freq
@@ -686,7 +689,7 @@ echo Your CPU freq is : %cpuf%
 set /p "cpuf=" <%temp%\cpuf.log
 
 if "%cpuf%" GEQ "1000" ( echo [92mYour CPU Frequency is supported by Windows 11.[0m >con && set "cfre=[102mOK[106m") else ( echo [91mYour CPU Frequency is not supported by Windows 11.[0m >con && set "cfre=[41;37mX[106;30m ")
-
+echo. >con
 echo ------
 ::RAM
 echo. >con
@@ -705,6 +708,7 @@ if "%RamSp%"=="Incompatible" ( set "RMSay=[91mnot enough[0m")
 echo Your RAM is %RMSay% to run Windows 11. >con
 
 ::Boot
+echo. >con
 echo ------
 echo. >con
 echo Checking Boot Mode... >con
@@ -714,4 +718,9 @@ if "%firmware_type%"=="UEFI" ( echo [92mYour PC boot mode is supported by Windo
 
 
 
-echo IF ANY RED / FAILS SHOW ABOVE YOU CANNOT INSTALL
+
+echo. >con
+echo ------
+echo. >con
+echo Tests are complete, if any results shown in red above this means it is highly likley a windows 11 install will work
+
