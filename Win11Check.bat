@@ -722,5 +722,7 @@ if "%firmware_type%"=="UEFI" ( echo [92mYour PC boot mode is supported by Windo
 echo. >con
 echo ------
 echo. >con
-echo Tests are complete, if any results shown in red above this means it is highly likley a windows 11 install will work
+echo Tests are complete, if any results shown in red above this means it is highly likley a windows 11 install will work 
+pause >nul
+exit 1;
 
